@@ -16,10 +16,22 @@ const expensesAndRefunds = [
     { description: 'Books', amount: 20, year: 2024 },
     { description: 'Fitness', amount: 30, year: 2024 },
     { description: 'Gifts', amount: 15, year: 2024 },
-]
+];
 
-let totalSpent = 0
-const cutoffDate = 2024
+let totalSpent = 0;
+const cutoffDate = 2024;
+for (let i = 0; i < expensesAndRefunds.length; i++) {
+    const currentExpenseOrRefund = expensesAndRefunds[i];
+    if(currentExpenseOrRefund.year >= cutoffDate){
+        console.log('Reached cutoff data, exiting loop');
+        break
+    }
 
+    if(currentExpenseOrRefund.amount < 0){
+        console.log(`Skipping ${currentExpenseOrRefund.description} due to refund`);
+        continue
+    }
+    totalSpent += currentExpenseOrRefund.amount
+}
 
 console.log(`Total amount spent on items in 2023: $${totalSpent}`)
